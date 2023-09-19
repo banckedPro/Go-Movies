@@ -15,15 +15,19 @@ type application struct {
 func main() {
 	// Set application config
 	var app application
-	app.Domain = "example.com"
+
+	// Read from CMD Line
 
 	// Read from command line
 
 	// Connect to database
 
-	// Start a web server
+	app.Domain = "example.com"
+
 	log.Println("Server started on port ", port)
-	err := http.ListenAndServe(fmt.Sprintf(":%d", port), nil)
+
+	// Start a web server
+	err := http.ListenAndServe(fmt.Sprintf(":%d", port), app.routes())
 
 	if err != nil {
 		log.Fatal(err)
